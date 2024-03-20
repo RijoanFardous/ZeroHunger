@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "CollectionRequest";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<form method="post" class="p-5 w-75 mx-auto" novalidate>
+    <h3>CollectionRequest</h3>
+
+    <div class="mb-3">
+        <label for="MaxPreserveTime" class="form-label">MaxPreserveTime:</label>
+        <input type="datetime-local" class="form-control" id="MaxPreserveTime" name="MaxPreserveTime" value="@Model.MaxPreserveTime" />
+        <p class="text-danger">@Html.ValidationMessage("MaxPreserveTime")</p>
+    </div>
+    <div class="mb-3">
+        <label for="Description" class="form-label">Short Description:</label>
+        <input type="text" class="form-control" id="Description" name="Description" value="@Model.Description" />
+        <p class="text-danger">@Html.ValidationMessage("Description")</p>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Confirm</button>
+</form>
+

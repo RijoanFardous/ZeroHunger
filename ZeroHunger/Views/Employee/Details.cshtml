@@ -1,0 +1,75 @@
+﻿@model ZeroHunger.EF.CollectionRequest
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h3>Request Details</h3>
+
+<table class="table table-bordered">
+    <tbody>
+        <tr>
+            <th scope="row">Request ID</th>
+            <td>@Model.Id</td>
+        </tr>
+        <tr>
+            <th scope="row">Requested By</th>
+            <td>@Model.User.Name</td>
+        </tr>
+        <tr>
+            <th scope="row">Requested At</th>
+            <td>@Model.RequestedAt</td>
+        </tr>
+        <tr>
+            <th scope="row">Max Preserve Time</th>
+            <td>@Model.MaxPreserveTime</td>
+        </tr>
+        <tr>
+            <th scope="row">Status</th>
+            <td>@Model.Status</td>
+        </tr>
+        <tr>
+            <th scope="row">Description</th>
+            <td>@Model.Description</td>
+        </tr>
+
+        @foreach (var d in Model.Distributions)
+        {
+            <tr>
+                <th scope="row">Assigned Employee</th>
+                <td>@d.User.Name</td>
+            </tr>
+            <tr>
+                <th scope="row">Distributed At</th>
+                <td>@d.DistributedAt</td>
+            </tr>
+            <tr>
+                <th scope="row">Number of People Fed</th>
+                <td>@d.PeopleFed</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.Status.Equals("Approved"))
+{
+    foreach (var d in Model.Distributions)
+    {
+        <form method="post">
+            <h3>Approve Request</h3>
+            <input type="hidden" value="@Model.Id" name="RequestId" />
+            <input type="hidden" value="@d.Id" name="Id" />
+
+            <div class="mb-3">
+                <label for="PeopleFed" class="form-label">PeopleFed</label>
+                <input type="number" class="form-control" id="PeopleFed" name="PeopleFed" />
+            </div>
+
+            <br />
+            <input class="btn btn-outline-primary" type="submit" value="Complete Request" />
+        </form>
+    }
+    
+}
+
+

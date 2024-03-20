@@ -1,0 +1,42 @@
+﻿@model List<ZeroHunger.EF.CollectionRequest>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h3>Restaurant Dashboard</h3>
+
+
+<a class="btn btn-sm btn-outline-dark" href="/Restaurant/CollectionRequest"><strong>New Collection Request</strong></a>
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Request ID</th>
+            <th scope="col">Requested By</th>
+            <th scope="col">Requested At</th>
+            <th scope="col">Max Preserve Time</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var req in Model)
+        {
+            if (req.RequestedBy == ViewBag.User.Id)
+            {
+                <tr>
+                    <td>@req.Id</td>
+                    <td>@req.User.Name</td>
+                    <td>@req.RequestedAt</td>
+                    <td>@req.MaxPreserveTime</td>
+                    <td>@req.Status</td>
+                    <td><a class="btn btn-outline-success btn-sm" href="/Restaurant/Details/@req.Id">Details</a></td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>

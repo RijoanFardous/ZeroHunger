@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Signup";
+
+    string CheckUserType(string userType)
+    {
+        if (Model == null || Model.Type == null) return "";
+        if (Model.Type.Equals(userType)) return "checked";
+
+        return "";
+    }
+}
+
+<form method="post" class="p-5 w-75 mx-auto" novalidate>
+    <h2>SignUp</h2>
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name:</label>
+        <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" />
+        <p class="text-danger">@Html.ValidationMessage("Name")</p>
+    </div>
+    <div class="mb-3">
+        <label for="Address" class="form-label">Address:</label>
+        <input type="text" class="form-control" id="Address" name="Address" value="@Model.Address" />
+        <p class="text-danger">@Html.ValidationMessage("Address")</p>
+    </div>
+    <div class="mb-3">
+        <label for="Email" class="form-label">Email:</label>
+        <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" />
+        <p class="text-danger">@Html.ValidationMessage("Email")</p>
+    </div>
+    <div class="mb-3">
+        <label for="Password" class="form-label">Password:</label>
+        <input type="password" class="form-control" id="Password" name="Password" value="@Model.Password" />
+        <p class="text-danger">@Html.ValidationMessage("Password")</p>
+    </div>
+
+    <span>Create Account As A:</span>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="Type" id="Employee" value="Employee" @CheckUserType("Volunteer") />
+        <label class="form-check-label" for="Employee">
+            Employee
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="Type" id="Restaurant" value="Restaurant" @CheckUserType("Restaurant") />
+        <label class="form-check-label" for="Restaurant">
+            Restaurant
+        </label>
+    </div>
+    <p class="text-danger">@Html.ValidationMessage("Type")</p>
+    <button type="submit" class="btn btn-primary">Create Account</button>
+    <p>Already have an account? <a href="/Home/Login">Login</a>.</p>
+</form>
+

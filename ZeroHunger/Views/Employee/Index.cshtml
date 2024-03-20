@@ -1,0 +1,38 @@
+﻿@model List<ZeroHunger.EF.Distribution>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h3>Employee Dashboard</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Request ID</th>
+            <th scope="col">Requested By</th>
+            <th scope="col">Requested At</th>
+            <th scope="col">Max Preserve Time</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dis in Model)
+        {
+            if (dis.EmployeeId == ViewBag.User.Id)
+            {
+                <tr>
+                    <td>@dis.CollectionRequest.Id</td>
+                    <td>@dis.CollectionRequest.User.Name</td>
+                    <td>@dis.CollectionRequest.RequestedAt</td>
+                    <td>@dis.CollectionRequest.MaxPreserveTime/td>
+                    <td>@dis.CollectionRequest.Status</td>
+                    <td><a class="btn btn-outline-success btn-sm" href="/Employee/Details/@dis.RequestId">Details</a></td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
