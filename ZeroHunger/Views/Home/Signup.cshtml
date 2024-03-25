@@ -11,7 +11,7 @@
     }
 }
 
-<form method="post" class="p-5 w-75 mx-auto" novalidate>
+<form method="post" novalidate>
     <h2>SignUp</h2>
     <div class="mb-3">
         <label for="Name" class="form-label">Name:</label>
@@ -36,7 +36,7 @@
 
     <span>Create Account As A:</span>
     <div class="form-check">
-        <input class="form-check-input" type="radio" name="Type" id="Employee" value="Employee" @CheckUserType("Volunteer") />
+        <input class="form-check-input" type="radio" name="Type" id="Employee" value="Employee" @CheckUserType("Employee") />
         <label class="form-check-label" for="Employee">
             Employee
         </label>
@@ -49,6 +49,5 @@
     </div>
     <p class="text-danger">@Html.ValidationMessage("Type")</p>
     <button type="submit" class="btn btn-primary">Create Account</button>
-    <p>Already have an account? <a href="/Home/Login">Login</a>.</p>
 </form>
 
